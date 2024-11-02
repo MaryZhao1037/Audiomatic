@@ -1,6 +1,7 @@
 import os
 import random
 import cv2
+import shutil
 from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
 
@@ -8,6 +9,8 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
 # Ensure the main upload folder exists
+if os.path.exists(app.config['UPLOAD_FOLDER']):
+    shutil.rmtree(app.config['UPLOAD_FOLDER'])
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 @app.route('/upload', methods=['POST'])
@@ -42,6 +45,20 @@ def uploaded_file(video_name, filename):
     # Serve extracted frames from the "pictures" subdirectory
     return send_from_directory(os.path.join(app.config['UPLOAD_FOLDER'], video_name, 'pictures'), filename)
 
+def resize_frame(frame):
+    height, width = frame.shape[:2]
+    max_area = 25000  # Maximum area allowed
+    current_area = height * width
+    
+    # Check if the current area is greater than max area
+    if current_area > max_area:
+        # Calculate the scaling factor
+        scaling_factor = (max_area / current_area) ** 0.5
+        new_width = int(width * scaling_factor)
+        new_height = int(height * scaling_factor)
+        frame = cv2.resize(frame, (new_width, new_height))
+    return frame
+
 def extract_random_frames(filepath, pictures_folder, num_frames=5):
     # Extract video name from the filepath
     video_name = os.path.splitext(os.path.basename(filepath))[0]
@@ -58,9 +75,12 @@ def extract_random_frames(filepath, pictures_folder, num_frames=5):
         video.set(cv2.CAP_PROP_POS_FRAMES, frame_no)
         success, frame = video.read()
         if success:
+            # Resize the frame
+            resized_frame = resize_frame(frame)
+            
             frame_filename = f"{os.path.splitext(os.path.basename(filepath))[0]}_frame_{frame_no}.jpg"
             frame_path = os.path.join(pictures_folder, frame_filename)
-            cv2.imwrite(frame_path, frame)
+            cv2.imwrite(frame_path, resized_frame)
             frames.append(f"{video_name}/pictures/{frame_filename}")  # Send relative path to frontend
 
     video.release()

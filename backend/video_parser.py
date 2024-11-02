@@ -2,7 +2,7 @@ import os
 import random
 import cv2
 import shutil
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, send_file
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -110,6 +110,12 @@ def upload_images():
 @app.route('/uploads/<path:filename>')
 def serve_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+@app.route('/video_preview', methods=['GET'])
+def video_preview():
+    # Construct the path relative to the project root
+    video_path = os.path.join(os.getcwd(), '', 'results', 'processed_video.mp4')
+    return send_file(video_path, mimetype='video/mp4')
 
 if __name__ == '__main__':
     app.run(debug=True)

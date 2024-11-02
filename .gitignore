@@ -1,2 +1,3 @@
 /backend/uploads/*
+/backend/results/*
 .env

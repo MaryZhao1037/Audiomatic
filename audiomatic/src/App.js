@@ -64,30 +64,31 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Media Uploader</h1>
-        <div>
-          <h2>Upload Video</h2>
-          <input type="file" accept="video/*" onChange={handleVideoUpload} />
+      <aside className="App-sidebar">
+        <h1 className="App-title">Audiomatic</h1>
+        <nav>
+          <ul>
+            <li>Dashboard</li>
+            <li>Upload</li>
+            <li>Settings</li>
+          </ul>
+        </nav>
+      </aside>
+      <main className="App-main">
+        <header className="App-header">
+          <h2>Media Uploader</h2>
+          <p>Upload your media files to get started.</p>
+        </header>
+        <div className="upload-section">
+          <h3>Upload Video</h3>
+          <input className="file-input" type="file" accept="video/*" onChange={handleVideoUpload} />
         </div>
-        <div>
-          <h2>Upload Images</h2>
-          <input type="file" accept="image/*" multiple onChange={handleImageUpload} />
+        <div className="upload-section">
+          <h3>Upload Images</h3>
+          <input className="file-input" type="file" accept="image/*" multiple onChange={handleImageUpload} />
         </div>
-        {uploading && <p>Uploading and processing...</p>}
-        <div className="frames-container">
-          <h3>Frames</h3>
-          {frames.map((frame, index) => (
-            <img key={index} src={`http://localhost:5000/${frame}`} alt={`Frame ${index}`} className="frame-image" />
-          ))}
-        </div>
-        <div className="images-container">
-          <h3>Uploaded Images</h3>
-          {images.map((image, index) => (
-            <img key={index} src={`http://localhost:5000/${image}`} alt={`Image ${index}`} className="uploaded-image" />
-          ))}
-        </div>
-      </header>
+        {uploading && <p className="uploading-text">Uploading and processing...</p>}
+      </main>
     </div>
   );
 }

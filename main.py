@@ -1,0 +1,2 @@
+from textToMusic import generate_music
+generate_music("A hauntingly beautiful orchestral piece with gentle strings and distant, ethereal choirs, evoking a sense of vastness and wonder. Soft woodwinds and shimmering bells add a mystical quality, while subtle, deep percussion creates an undercurrent of power and solitude. The music crescendos gradually, reflecting the awe and humility of standing alone beneath a cosmic sky.", "result.wav")

@@ -4,6 +4,7 @@ import cv2
 import shutil
 from flask import Flask, request, jsonify, send_from_directory, send_file
 from werkzeug.utils import secure_filename
+from moviepy.editor import VideoFileClip, AudioFileClip
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
@@ -113,9 +114,20 @@ def serve_file(filename):
 
 @app.route('/video_preview', methods=['GET'])
 def video_preview():
+    process_video()
     # Construct the path relative to the project root
-    video_path = os.path.join(os.getcwd(), '', 'results', 'processed_video.mp4')
+    video_path = os.path.join(os.getcwd(), 'results', 'processed_video.mp4')
     return send_file(video_path, mimetype='video/mp4')
+
+def process_video():
+    # Load the video 'clip'
+    video_clip = VideoFileClip("output/video.mp4")
+    # Load the audio clip
+    audio_clip = AudioFileClip("output/audio.mp3")
+    # Set the audio to the video clip
+    final_clip = video_clip.set_audio(audio_clip)
+    # Save the resulting video
+    final_clip.write_videofile("results/processed_video.mp4", codec="libx264", audio_codec="aac")
 
 if __name__ == '__main__':
     app.run(debug=True)

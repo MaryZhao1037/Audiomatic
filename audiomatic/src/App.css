@@ -65,19 +65,15 @@ nav li:hover {
 }
 
 .file-input {
-  margin-top: 10px;
-  padding: 10px 20px;
+  /* margin-top: 10px;
+  padding: 10px 20px; */
   font-size: 1rem;
-  background-color: #333;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
+  /* background-color: #819dd6; */
+  color: #282c34;
+  /* border: none;
+  border-radius: 8px; */
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.file-input:hover {
-  background-color: #444;
 }
 
 .uploading-text {
@@ -107,4 +103,25 @@ nav li:hover {
 .frame-image:hover, .uploaded-image:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Button Style Matching the Audiomatic Logo Color */
+.btn-logo {
+  background-color: #00ccff; /* Replace with your logo's HEX color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-logo:hover {
+  background-color: #9eb3c7; /* A slightly darker shade for hover effect */
+}
+
+/* Optional: Consistent Font for Buttons */
+button {
+  font-family: inherit; /* Ensures consistency with your app's font */
 }

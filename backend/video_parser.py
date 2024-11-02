@@ -86,5 +86,30 @@ def extract_random_frames(filepath, pictures_folder, num_frames=5):
     video.release()
     return frames
 
+@app.route('/upload_images', methods=['POST'])
+def upload_images():
+    image_files = [file for key, file in request.files.items() if key.startswith('image_')]
+    
+    if not image_files:
+        return jsonify({"error": "No images in the request"}), 400
+    
+    # Create a unique directory to store the images
+    images_folder = os.path.join(app.config['UPLOAD_FOLDER'], f"images_{random.randint(0, 1e6)}")
+    os.makedirs(images_folder, exist_ok=True)
+
+    image_paths = []
+    for image_file in image_files:
+        filename = secure_filename(image_file.filename)
+        image_path = os.path.join(images_folder, filename)
+        image_file.save(image_path)
+        image_paths.append(os.path.relpath(image_path, app.config['UPLOAD_FOLDER']))
+
+    return jsonify({"images": image_paths})
+
+# Serve images from the upload folder
+@app.route('/uploads/<path:filename>')
+def serve_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 if __name__ == '__main__':
     app.run(debug=True)

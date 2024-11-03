@@ -219,8 +219,37 @@ def audio_preview():
         image_path = check_recent_image()
         print(image_path)
         img_description = ai_endpoints.imageToText(image_path, api_key)
+        # Insert the image description into the database
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            
+            insert_query = sql.SQL("INSERT INTO {table} (description) VALUES (%s)").format(
+                table=sql.Identifier('image_descriptions')
+            )
+            cursor.execute(insert_query, (img_description,))
+            conn.commit()
+            
+            cursor.close()
+            conn.close()
+        except Exception as e:
+            print(f"Database error: {e}")
         print(img_description)
         audio_description = ai_endpoints.reprompt(img_description, api_key)
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            
+            insert_query = sql.SQL("INSERT INTO {table} (description) VALUES (%s)").format(
+                table=sql.Identifier('audio_descriptions')
+            )
+            cursor.execute(insert_query, (img_description,))
+            conn.commit()
+            
+            cursor.close()
+            conn.close()
+        except Exception as e:
+            print(f"Database error: {e}")
         print(audio_description)
 
         output_path = os.path.join(os.getcwd(), 'output', 'realaudio.mp3')

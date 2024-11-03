@@ -23,17 +23,18 @@ function NavButton({ to, children, className = '' }) {
 function Navigation() {
   return (
     <aside className="App-sidebar">
-      <NavButton to="/dashboard" className="title-button ml-0 mr-8 pl-0">
+      <NavButton to="/home" className="title-button ml-0 mr-8 pl-0">
         
         <div className="title-container ml-0 pl-4 pr-8 mr-8">
           <h1 className="App-title">Audiomatic</h1>
         </div>
-        <div className="title-container ml-0 pl-2 pr-0 mr-0">
-          <img 
-            src="/logo.png" // Replace with your actual logo path
-            alt="Audiomatic Logo"
-            className="app-logo"
-          />
+        <div className="title-container ml-8 pl-8 pr-0 mr-0">
+        <img 
+  src="/logo.png" 
+  alt="Audiomatic Logo"
+  className="app-logo"
+  style={{ width: '110px', height: 'auto' }} 
+/>
         </div>
       </NavButton>
       <nav>

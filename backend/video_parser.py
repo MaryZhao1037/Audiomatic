@@ -224,8 +224,8 @@ def audio_preview():
             conn = get_db_connection()
             cursor = conn.cursor()
             
-            insert_query = sql.SQL("INSERT INTO {table} (description) VALUES (%s)").format(
-                table=sql.Identifier('image_prompts')
+            insert_query = sql.SQL("INSERT INTO {table} (prompt) VALUES (%s)").format(
+                table=sql.Identifier('video_prompts')
             )
             cursor.execute(insert_query, (img_description,))
             conn.commit()
@@ -240,7 +240,7 @@ def audio_preview():
             conn = get_db_connection()
             cursor = conn.cursor()
             
-            insert_query = sql.SQL("INSERT INTO {table} (description) VALUES (%s)").format(
+            insert_query = sql.SQL("INSERT INTO {table} (prompt) VALUES (%s)").format(
                 table=sql.Identifier('audio_prompts')
             )
             cursor.execute(insert_query, (img_description,))

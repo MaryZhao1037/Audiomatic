@@ -3,7 +3,7 @@
 .nav-button {
   width: 100%;
   padding: 10px;
-  background-color: #1e3a8a; /* or whatever blue you're using */
+  background-color: transparent; /* Change to transparent */
   color: white;
   border: none;
   cursor: pointer;
@@ -12,11 +12,8 @@
   margin: 0;
   appearance: none;
   -webkit-appearance: none;
-}
-
-/* Optional: Add hover state */
-.nav-button:hover {
-  background-color: #2563eb; /* lighter blue for hover */
+  outline: none; /* Remove any focus outline */
+  box-shadow: none; /* Remove any shadow */
 }
 
 /* Remove any list styling if you haven't already */

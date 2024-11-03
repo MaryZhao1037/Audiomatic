@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
-import './index.css';
 
 import Dashboard from './components/dashboard';
 import Upload from './components/upload';

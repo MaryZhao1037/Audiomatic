@@ -10,6 +10,7 @@ from psycopg2 import sql  # Allows for safe SQL query building
 import mysql.connector
 from flask_cors import CORS
 from threading import Lock
+import json
 
 import ai_endpoints
 from dotenv import load_dotenv
@@ -188,7 +189,21 @@ def video_preview():
     video_path = os.path.join(os.getcwd(), 'output', 'processed_video.mp4')
     return send_file(video_path, mimetype='video/mp4')
 
+@app.route('/audio_list', methods=['GET'])
+def get_audio_list():
+    print("wassup")
+    with open('history/history.json') as f:
+        data = json.load(f)
+    print(data)
+    return jsonify(list(data.keys()))
 
+@app.route('/data_map', methods=['GET'])
+def get_data_map():
+    print("wassup")
+    with open('history/history.json') as f:
+        data = json.load(f)
+    print(data)
+    return jsonify(data)
 
     
 @app.route('/audio_preview', methods=['GET'])
@@ -259,6 +274,12 @@ def audio_preview():
         print(output_path)
         generated = True
         return send_file(output_path, mimetype='audio/mp3')
+    
+@app.route('/get_url/<filename>', methods=['GET'])
+def get_url(filename):
+    output_path = os.path.join(os.getcwd(), 'history', filename)
+    return send_file(output_path, mimetype='audio/mp3')
+
 
 def process_video():
     print("we here")

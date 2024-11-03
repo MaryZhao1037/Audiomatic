@@ -1,13 +1,23 @@
-[
+{
+"earthgettingdeleted.jpg":
     {
-        "image": "earth"
-
+        "date":"2024-11-03T04:13:16Z",
+        "description":"The Earth is getting deleted",
+        "img_path":"history/earthgettingdeleted.jpg",
+        "mp3_path":"history/earthgettingdeleted.mp3"
     },
+"eldenring.png":
     {
-
-
+        "date":"2024-11-03T02:01:59Z",
+        "description":"The Earth is getting deleted again",
+        "img_path":"history/eldenring.png",
+        "mp3_path":"history/eldenring.mp3"
     },
+"nightclub.jpg":
     {
-
+        "date":"2024-11-02T23:34:10Z",
+        "description":"The Earth is getting deleted again",
+        "img_path":"history/nightclub.jpg",
+        "mp3_path":"history/nightclub.mp3"
     }
-]
+}

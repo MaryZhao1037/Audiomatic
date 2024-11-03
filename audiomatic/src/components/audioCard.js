@@ -1,94 +1,90 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
-import Box from '@mui/material/Box';
-import MediaControlCard from './audioCard';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-}));
+// Import the audio files directly
+import nycTheme from '../audio/nyc-theme.mp3';
+import lakeLouiseTheme from '../audio/lake-louise-theme.mp3';
+import abstractTheme from '../audio/abstract-theme.mp3';
+import battleCatTheme from '../audio/battle-cat-theme.mp3';
 
-function RecipeReviewCard({ mediaSrc, mediaType, description, tags }) {
-  const [expanded, setExpanded] = React.useState(false);
+function MediaControlCard({ title, artist, audioSrc }) {
+  const theme = useTheme();
+  const [isPlaying, setIsPlaying] = React.useState(false);
+  const audioRef = React.useRef(null);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
   };
 
   return (
-      <Card sx={{ maxWidth: 345, margin: 2 }}>
-        <Box sx={{ height: 200, backgroundColor: 'black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          {mediaType === 'image' ? (
-            <img src={mediaSrc} alt="Recipe" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          ) : (
-            <video src={mediaSrc} controls style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          )}
-        </Box>
+    <Card sx={{ display: 'flex', alignItems: 'center', mb: 2, minWidth: 300 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', flex: '1 0 auto' }}>
         <CardContent>
-          <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2 }}>
-            {description}
+          <Typography component="div" variant="h5">
+            {title}
           </Typography>
-          <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-            {tags.map((tag, index) => (
-              <Chip key={index} label={tag} variant="outlined" />
-            ))}
-          </Box>
+          <Typography
+            variant="subtitle1"
+            component="div"
+            sx={{ color: 'text.secondary' }}
+          >
+            {artist}
+          </Typography>
         </CardContent>
-      </Card>
+        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+          <IconButton aria-label="previous">
+            {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
+          </IconButton>
+          <IconButton aria-label="play/pause" onClick={handlePlayPause}>
+            {isPlaying ? (
+              <PauseIcon sx={{ height: 38, width: 38 }} />
+            ) : (
+              <PlayArrowIcon sx={{ height: 38, width: 38 }} />
+            )}
+          </IconButton>
+          <IconButton aria-label="next">
+            {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
+          </IconButton>
+        </Box>
+      </Box>
+      <audio ref={audioRef} src={audioSrc} preload="auto" />
+    </Card>
   );
 }
 
-export default function RecipeReviewCardList() {
-  const cardsData = [
-    {
-      mediaSrc: '/assets/nyc.jpg',
-      mediaType: 'image',
-      description: 'New York City: where dreams are big, buildings are taller, and sleep is optional. From the neon dazzle of Times Square to the calm of Central Park, NYC is a concrete jungle that’s anything but tame.',
-      tags: ["Arts & Culture", "Finance", "Night Life"],
-    },
-    {
-      mediaSrc: '/assets/32-lake-louise.jpg',
-      mediaType: 'image',
-      description: 'Lake Louise: where the mountains are majestic, the water’s glacier-blue, and nature outshines any filter. Nestled in the Rockies, it’s Canada’s ultimate alpine postcard—stunningly cold and stunningly beautiful.',
-      tags: ["Nature", "Lakes", "Wildlife"],
-    },
-    {
-      mediaSrc: '/assets/understanding-abstract-art.jpg',
-      mediaType: 'image',
-      description: 'This abstract piece: where colors collide, shapes dance, and rules take a backseat. A splash of bold hues and energetic strokes—it is art that doesn’t tell you what to see, but dares you to feel.',
-      tags: ["Abstract Art", "Color Theory", "Visual Energy"],
-    },
-    {
-      mediaSrc: '/assets/gross-cat-battle-cats.mp4',
-      mediaType: 'video',
-      description: 'Watch this exciting and fun video of the Gross Cat from Battle Cats in action!',
-      tags: ["Video", "Battle Cats", "Fun"],
-    }
-  ];
-
+export default function AudioPlayer() {
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-      {cardsData.map((card, index) => (
-        <RecipeReviewCard
-          key={index}
-          mediaSrc={card.mediaSrc}
-          mediaType={card.mediaType}
-          description={card.description}
-          tags={card.tags}
-        />
-      ))}
-           <MediaControlCard />
+    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+      <MediaControlCard
+        title="New York City Theme"
+        audioSrc={nycTheme}
+      />
+      <MediaControlCard
+        title="Lake Louise Theme"
+        audioSrc={lakeLouiseTheme}
+      />
+      <MediaControlCard
+        title="Abstract Theme"
+        audioSrc={abstractTheme}
+      />
+      <MediaControlCard
+        title="Battle Cat Theme"
+        audioSrc={battleCatTheme}
+      />
     </Box>
   );
 }

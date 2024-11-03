@@ -54,20 +54,20 @@ export default function RecipeReviewCardList() {
     {
       mediaSrc: '/assets/nyc.jpg',
       mediaType: 'image',
-      description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.',
-      tags: ["Live", "Music", "Album"]
+      description: 'New York City: where dreams are big, buildings are taller, and sleep is optional. From the neon dazzle of Times Square to the calm of Central Park, NYC is a concrete jungle that’s anything but tame.',
+      tags: ["Arts & Culture", "Finance", "Night Life"]
     },
     {
-      mediaSrc: '/assets/tokyo.jpg',
+      mediaSrc: '/assets/32-lake-louise.jpg',
       mediaType: 'image',
-      description: 'A delightful pasta dish that combines fresh ingredients with a creamy sauce. Perfect for a family dinner or a small gathering.',
-      tags: ["Pasta", "Dinner", "Italian"]
+      description: 'Lake Louise: where the mountains are majestic, the water’s glacier-blue, and nature outshines any filter. Nestled in the Rockies, it’s Canada’s ultimate alpine postcard—stunningly cold and stunningly beautiful.',
+      tags: ["Nature", "Lakes", "Wildlife"]
     },
     {
-      mediaSrc: '/assets/city3.jpg',
+      mediaSrc: '/assets/understanding-abstract-art.jpg',
       mediaType: 'image',
-      description: 'Enjoy a refreshing and light summer salad with a mix of greens, fruits, and nuts. Great as a starter or a side dish.',
-      tags: ["Salad", "Healthy", "Vegetarian"]
+      description: 'This abstract piece: where colors collide, shapes dance, and rules take a backseat. A splash of bold hues and energetic strokes—it is art that doesn’t tell you what to see, but dares you to feel.',
+      tags: ["Abstract Art", "Color Theory", "Visual Energy"]
     },
     {
       mediaSrc: '/assets/gross-cat-battle-cats.mp4',

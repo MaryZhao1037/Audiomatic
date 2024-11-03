@@ -1,10 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   margin: 0;
   font-family: 'Rubik';
   background-color: #121212;
   color: #ffffff;
+}
+
+/* Header Styles */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+/* Subtitle styling */
+h2 + p {
+  font-size: 1.1rem;
+  color: #999;
+  margin-bottom: 2rem;
 }
 
 .title-container {
@@ -15,15 +40,15 @@ body {
 }
 
 .app-logo {
-  width: 40px;  /* Reduced size */
-  height: 40px; /* Reduced size */
+  width: 40px;
+  height: 40px;
   object-fit: contain;
 }
 
 .nav-button {
   width: 100%;
   padding: 10px;
-  background-color: transparent; /* Change to transparent */
+  background-color: transparent;
   font-size: 1.1rem;
   color: white;
   border: none;
@@ -33,8 +58,8 @@ body {
   margin: 0;
   appearance: none;
   -webkit-appearance: none;
-  outline: none; /* Remove any focus outline */
-  box-shadow: none; /* Remove any shadow */
+  outline: none;
+  box-shadow: none;
 }
 
 /* Remove any list styling if you haven't already */
@@ -64,13 +89,35 @@ body {
   justify-content: space-between;
   color: #ffffff;
   box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.App-sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  right: -12px;
+  bottom: 20px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
 }
 
 .App-title {
   font-size: 1.8rem;
   font-weight: bold;
   color: #00ccff;
-  margin: 0; /* Remove default margin to align properly */
+  margin: 0;
 }
 
 nav ul {
@@ -94,7 +141,7 @@ nav li:hover {
 .App-main {
   flex: 1;
   padding: 40px;
-  overflow-y: auto; /* Allows scrolling if content overflows */
+  overflow-y: auto;
 }
 
 .App-header {
@@ -104,31 +151,35 @@ nav li:hover {
 
 /* Upload Section Styles */
 .upload-section {
-  background-color: #282c34;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Upload section headers */
 .upload-section h3 {
-  margin: 0 0 10px; /* Adds some spacing below headings */
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
 }
 
 /* Upload Section Button Styles */
 .upload-section button {
-  background-color: #c5c7d2; /* Button background color */
+  background-color: #c5c7d2;
   color: black;
   border: none;
-  padding: 5px 10px; /* Reduced padding for a smaller button */
-  font-size: 0.9rem; /* Smaller font size */
+  padding: 5px 10px;
+  font-size: 0.9rem;
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
 .upload-section button:hover {
-  background-color: #9eb3c7; /* A slightly darker shade for hover effect */
+  background-color: #9eb3c7;
 }
 
 /* Uploading Text */
@@ -166,43 +217,63 @@ nav li:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
 }
 
-/* Optional: Consistent Font for Buttons */
-button {
-  font-family: inherit; /* Ensures consistency with your app's font */
+.title-button {
+  background: none;
+  border: none;
+  padding: 0;
+  width: 100%;
+  cursor: pointer;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .App {
-    flex-direction: column; /* Stack sidebar and main content on smaller screens */
-  }
+.title-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
 
-  .App-sidebar {
-    width: 100%; /* Full width for sidebar on mobile */
-  }
-
-  .App-main {
-    padding: 20px; /* Reduced padding for mobile */
-  }
-
-  .upload-section {
-    padding: 10px; /* Reduced padding for mobile */
-  }
+.App-sidebar.collapsed .nav-button {
+  text-align: center;
+  padding: 0.5rem;
 }
 
 /* Generate Button Styles */
 .btn-generate {
-  background-color: #00ccff; /* Different background color */
+  background-color: #00ccff;
   color: white;
   border: none;
-  padding: 8px 16px; /* Slightly smaller padding */
-  font-size: 0.9rem; /* Keep the smaller font size */
+  padding: 8px 16px;
+  font-size: 0.9rem;
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-generate:hover {
-  background-color: #77787f; /* Darker shade for hover effect */
-  transform: scale(1.05); /* Slight scaling effect on hover */
+  background-color: #77787f;
+  transform: scale(1.05);
+}
+
+/* Optional: Consistent Font for Buttons */
+button {
+  font-family: inherit;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .App-sidebar {
+    width: 100%;
+  }
+
+  .App-main {
+    padding: 20px;
+  }
+
+  .upload-section {
+    padding: 10px;
+  }
 }

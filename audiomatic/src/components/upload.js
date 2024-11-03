@@ -6,6 +6,7 @@ function Upload() {
   const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [videoPreviewUrl, setVideoPreviewUrl] = useState('');
+  const [fileNames, setFileNames] = useState([]);
 
   const handleVideoUpload = async (event) => {
     const file = event.target.files[0];
@@ -38,6 +39,7 @@ function Upload() {
     const files = Array.from(event.target.files);
     if (files.length === 0) return;
 
+    setFileNames(files.map(file => file.name));
     const formData = new FormData();
     files.forEach((file, index) => {
       formData.append(`image_${index}`, file);
@@ -102,6 +104,17 @@ function Upload() {
           onChange={handleImageUpload}
           style={{ display: 'none' }}
         />
+
+        {fileNames.length > 0 && (
+          <div className="uploaded-files my-8">
+            <h3>Uploaded Files:</h3>
+            {fileNames.map((name, index) => (
+              <div key={index} className="file-name">
+                {name}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {uploading && <p className="uploading-text">Uploading and processing...</p>}

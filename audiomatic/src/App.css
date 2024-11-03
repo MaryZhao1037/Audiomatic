@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
 
+body {
+  margin: 0;
+  font-family: 'Rubik';
+  background-color: #121212;
+  color: #ffffff;
+}
+
 .nav-button {
   width: 100%;
   padding: 10px;
   background-color: transparent; /* Change to transparent */
+  font-size: 1.1rem;
   color: white;
   border: none;
   cursor: pointer;
@@ -26,13 +34,6 @@
 .App-sidebar nav li {
   margin: 0;
   padding: 0;
-}
-
-body {
-  margin: 0;
-  font-family: 'Rubik';
-  background-color: #121212;
-  color: #ffffff;
 }
 
 .App {

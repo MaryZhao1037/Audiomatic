@@ -87,30 +87,37 @@ function App() {
         </header>
         <div className="upload-section">
           <h3>Upload Video</h3>
+          <button onClick={() => document.getElementById('videoUpload').click()}>
+            Choose File
+          </button>
           <input
-            // className="file-input"
+            id="videoUpload"
             type="file"
             accept="video/*"
             onChange={handleVideoUpload}
+            style={{ display: 'none' }} // Hide the input
           />
         </div>
         <div className="upload-section">
           <h3>Upload Images</h3>
+          <button onClick={() => document.getElementById('imageUpload').click()}>
+            Choose Files
+          </button>
           <input
-            // className="file-input"
+            id="imageUpload"
             type="file"
             accept="image/*"
             multiple
             onChange={handleImageUpload}
+            style={{ display: 'none' }} // Hide the input
           />
         </div>
         {uploading && <p className="uploading-text">Uploading and processing...</p>}
         
         {/* Video Preview Section */}
         <div className="video-preview-section">
-          <h3>Video Preview</h3>
-          <button className="btn-logo" onClick={loadVideoPreview}>
-            Load Video Preview
+          <button className="btn-generate" onClick={loadVideoPreview}>
+            Generate 
           </button>
           {videoPreviewUrl && (
             <video controls width="600">

@@ -12,6 +12,7 @@ body {
   min-height: 100vh;
 }
 
+/* Sidebar Styles */
 .App-sidebar {
   background-color: #1f1f1f;
   padding: 20px;
@@ -46,9 +47,11 @@ nav li:hover {
   color: #00ccff;
 }
 
+/* Main Content Styles */
 .App-main {
   flex: 1;
   padding: 40px;
+  overflow-y: auto; /* Allows scrolling if content overflows */
 }
 
 .App-header {
@@ -56,6 +59,7 @@ nav li:hover {
   margin-bottom: 20px;
 }
 
+/* Upload Section Styles */
 .upload-section {
   background-color: #282c34;
   padding: 15px;
@@ -64,35 +68,48 @@ nav li:hover {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.file-input {
-  /* margin-top: 10px;
-  padding: 10px 20px; */
-  font-size: 1rem;
-  /* background-color: #819dd6; */
-  color: #282c34;
-  /* border: none;
-  border-radius: 8px; */
+.upload-section h3 {
+  margin: 0 0 10px; /* Adds some spacing below headings */
+}
+
+/* Upload Section Button Styles */
+.upload-section button {
+  background-color: #c5c7d2; /* Button background color */
+  color: black;
+  border: none;
+  padding: 5px 10px; /* Reduced padding for a smaller button */
+  font-size: 0.9rem; /* Smaller font size */
   cursor: pointer;
+  border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
+.upload-section button:hover {
+  background-color: #9eb3c7; /* A slightly darker shade for hover effect */
+}
+
+/* Uploading Text */
 .uploading-text {
   font-size: 1.2rem;
   color: #ffcc00;
   margin: 15px 0;
 }
 
-.frames-container, .images-container {
+/* Image Display Styles */
+.frames-container,
+.images-container {
   margin-top: 20px;
 }
 
-.frames-list, .images-list {
+.frames-list,
+.images-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.frame-image, .uploaded-image {
+.frame-image,
+.uploaded-image {
   max-width: 100px;
   max-height: 100px;
   border-radius: 8px;
@@ -100,28 +117,49 @@ nav li:hover {
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.frame-image:hover, .uploaded-image:hover {
+.frame-image:hover,
+.uploaded-image:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
-}
-
-/* Button Style Matching the Audiomatic Logo Color */
-.btn-logo {
-  background-color: #00ccff; /* Replace with your logo's HEX color */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.btn-logo:hover {
-  background-color: #9eb3c7; /* A slightly darker shade for hover effect */
 }
 
 /* Optional: Consistent Font for Buttons */
 button {
   font-family: inherit; /* Ensures consistency with your app's font */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .App {
+    flex-direction: column; /* Stack sidebar and main content on smaller screens */
+  }
+
+  .App-sidebar {
+    width: 100%; /* Full width for sidebar on mobile */
+  }
+
+  .App-main {
+    padding: 20px; /* Reduced padding for mobile */
+  }
+
+  .upload-section {
+    padding: 10px; /* Reduced padding for mobile */
+  }
+}
+
+/* Generate Button Styles */
+.btn-generate {
+  background-color: #00ccff; /* Different background color */
+  color: white;
+  border: none;
+  padding: 8px 16px; /* Slightly smaller padding */
+  font-size: 0.9rem; /* Keep the smaller font size */
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-generate:hover {
+  background-color: #77787f; /* Darker shade for hover effect */
+  transform: scale(1.05); /* Slight scaling effect on hover */
 }

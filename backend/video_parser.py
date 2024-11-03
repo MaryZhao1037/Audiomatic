@@ -28,8 +28,8 @@ finished_file = None
 # PostgreSQL database configuration
 DB_CONFIG = {
     'dbname': 'audiomatic',
-    'user': 'michael',
-    'password': 'poggers',
+    'user': os.getenv('POSTGRES_USER'),
+    'password': os.getenv('POSTGRES_PASSWORD'),
     'host': 'localhost',
     'port': '5432'  # Default PostgreSQL port
 }
@@ -225,7 +225,7 @@ def audio_preview():
             cursor = conn.cursor()
             
             insert_query = sql.SQL("INSERT INTO {table} (description) VALUES (%s)").format(
-                table=sql.Identifier('image_descriptions')
+                table=sql.Identifier('image_prompts')
             )
             cursor.execute(insert_query, (img_description,))
             conn.commit()
@@ -241,7 +241,7 @@ def audio_preview():
             cursor = conn.cursor()
             
             insert_query = sql.SQL("INSERT INTO {table} (description) VALUES (%s)").format(
-                table=sql.Identifier('audio_descriptions')
+                table=sql.Identifier('audio_prompts')
             )
             cursor.execute(insert_query, (img_description,))
             conn.commit()

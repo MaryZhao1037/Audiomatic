@@ -22,15 +22,17 @@ function Navigation() {
   return (
     <aside className="App-sidebar">
       <NavButton to="/dashboard" className="title-button ml-0 mr-8 pl-0">
-        <div className="title-container ml-0 pl-0 pr-8 mr-8">
+        
+        <div className="title-container ml-0 pl-4 pr-8 mr-8">
+          <h1 className="App-title">Audiomatic</h1>
+        </div>
+        <div className="title-container ml-0 pl-2 pr-0 mr-0">
           <img 
             src="/logo.png" // Replace with your actual logo path
             alt="Audiomatic Logo"
             className="app-logo"
           />
-          <h1 className="App-title">Audiomatic</h1>
         </div>
-        
       </NavButton>
       <nav>
         <ul>

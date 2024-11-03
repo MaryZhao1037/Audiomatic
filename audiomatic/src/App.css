@@ -56,12 +56,7 @@ h2 + p {
   line-height: 1.7;
 }
 
-.App-title-container {
-  display: flex;
-  align-items: center; /* Vertically centers items */
-  justify-content: center; /* Horizontally centers items */
-  text-align: center; /* Centers text in h1 */
-}
+
 
 /* Sidebar */
 .App-sidebar {

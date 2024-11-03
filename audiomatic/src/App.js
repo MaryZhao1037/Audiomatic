@@ -6,6 +6,7 @@ import Dashboard from './components/dashboard';
 import Upload from './components/upload';
 import History from './components/history';
 import ButtonAppBar from './components/sidebar';
+import Home from './components/home';
 
 function Navigation() {
   return (
@@ -20,7 +21,8 @@ function App() {
         <Navigation />
         <main className="App-main">
           <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/history" element={<History />} />

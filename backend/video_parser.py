@@ -5,6 +5,7 @@ import shutil
 from flask import Flask, request, jsonify, send_from_directory, send_file
 from werkzeug.utils import secure_filename
 from moviepy.editor import VideoFileClip, AudioFileClip
+import mysql.connector
 
 import ai_endpoints
 from dotenv import load_dotenv
@@ -164,6 +165,33 @@ def process_video():
     final_clip = video_clip.set_audio(audio_clip)
     # Save the resulting video
     final_clip.write_videofile("results/processed_video.mp4", codec="libx264", audio_codec="aac")
+
+# Database connection configuration
+db_config = {
+    'host': 'favorable-mark-440605-h0:us-central1:audiomatic',       # e.g., 'localhost'
+    'user': 'root',   # MySQL username
+    'password': 'mysqliscool69!', # MySQL password
+    'database': 'hacktx'       # Your database name
+}
+
+# Route to fetch all data from the "Prompts" table
+@app.route('/api/prompts', methods=['GET'])
+def get_prompts():
+    try:
+        conn = mysql.connector.connect(**db_config)
+        cursor = conn.cursor(dictionary=True)
+        
+        query = "SELECT * FROM Prompts"
+        cursor.execute(query)
+        results = cursor.fetchall()
+        
+        cursor.close()
+        conn.close()
+        
+        return jsonify(results)
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+        return jsonify({"error": "Database connection failed"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

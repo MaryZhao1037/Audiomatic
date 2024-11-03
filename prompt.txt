@@ -1,0 +1,19 @@
+Convert this descirption into a prompt for an audio generation API:
+
+Here are prompt examples:
+
+A grand orchestral arrangement with thunderous percussion, epic brass fanfares, and soaring strings, creating a cinematic atmosphere fit for a heroic battle.
+
+Classic reggae track with an electronic guitar solo
+
+drum and bass beat with intense percussions
+
+A dynamic blend of hip-hop and orchestral elements, with sweeping strings and brass, evoking the vibrant energy of the city.
+
+Violins and synths that inspire awe at the finiteness of life and the universe.
+
+80s electronic track with melodic synthesizers, catchy beat and groovy bass
+
+Smooth jazz, with a saxophone solo, piano chords, and snare full drums
+
+Rock with saturated guitars, a heavy bass line and crazy drum break and fills.

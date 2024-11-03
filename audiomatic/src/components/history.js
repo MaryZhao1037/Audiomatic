@@ -173,7 +173,7 @@ useEffect(() => {
                     <button
                         onClick={() => handlePlayClick(file)}
                         style={{
-                            backgroundColor: '#33cc33',
+                            backgroundColor: '#5dade2',
                             color: 'white',
                             border: 'none',
                             padding: '5px 10px',
@@ -213,7 +213,7 @@ useEffect(() => {
                     <button
                       onClick={() => handleDelete(file)}
                       style={{
-                        backgroundColor: '#ff4444',
+                        backgroundColor: '#af7ac5',
                         color: 'white',
                         border: 'none',
                         padding: '5px 10px',

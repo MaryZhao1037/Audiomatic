@@ -1,2 +1,9 @@
 from textToMusic import generate_music
-generate_music("A hauntingly beautiful orchestral piece with gentle strings and distant, ethereal choirs, evoking a sense of vastness and wonder. Soft woodwinds and shimmering bells add a mystical quality, while subtle, deep percussion creates an undercurrent of power and solitude. The music crescendos gradually, reflecting the awe and humility of standing alone beneath a cosmic sky.", "result.wav")
+
+prompt = '''
+An entrancing fusion of tropical house and ambient lounge music, with pulsing synths, smooth basslines, and rhythmic percussion. 
+The music envelops the lively, intimate crowd with a warm, glowing energy, while soft steel drums add a tropical flair. 
+Beneath the vibrant beats and joyful rhythms, a touch of melancholy surfaces, capturing the fleeting beauty of the night.
+
+'''
+generate_music(prompt, "result.wav")

@@ -5,23 +5,31 @@ import './App.css';
 import Dashboard from './components/dashboard';
 import Upload from './components/upload';
 
-function NavButton({ to, children }) {
+function NavButton({ to, children, className = '' }) {
   const navigate = useNavigate();
   return (
     <button 
       onClick={() => navigate(to)}
-      className="nav-button" // Add this class
+      className={`nav-button ${className}`}
     >
       {children}
     </button>
   );
 }
 
-// Create a separate Navigation component since useNavigate must be used inside Router
 function Navigation() {
   return (
     <aside className="App-sidebar">
-      <h1 className="App-title">Audiomatic</h1>
+      <NavButton to="/dashboard" className="title-button">
+        <div className="title-container">
+          <img 
+            src="/logo.png" // Replace with your actual logo path
+            alt="Audiomatic Logo"
+            className="app-logo"
+          />
+          <h1 className="App-title">Audiomatic</h1>
+        </div>
+      </NavButton>
       <nav>
         <ul>
           <li>

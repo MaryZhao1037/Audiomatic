@@ -7,6 +7,19 @@ body {
   color: #ffffff;
 }
 
+.title-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.app-logo {
+  width: 40px;  /* Reduced size */
+  height: 40px; /* Reduced size */
+  object-fit: contain;
+}
+
 .nav-button {
   width: 100%;
   padding: 10px;
@@ -57,6 +70,7 @@ body {
   font-size: 1.8rem;
   font-weight: bold;
   color: #00ccff;
+  margin: 0; /* Remove default margin to align properly */
 }
 
 nav ul {

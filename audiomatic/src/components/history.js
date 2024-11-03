@@ -7,6 +7,7 @@ function History() {
   const [audioFiles, setAudioFiles] = useState([]);
   const [dataMap, setDataMap] = useState({});
   const [loading, setLoading] = useState(false);
+  const [playingHistory, setPlayingHistory] = useState(false);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
   const [error, setError] = useState(null);
   const [audioUrls, setAudioUrls] = useState({});  // Add this new state
@@ -148,7 +149,7 @@ useEffect(() => {
         <p className="uploading-text">Loading audio files...</p>
       ) : error ? (
         <div className="upload-section">
-          <p style={{ color: '#ff4444' }}>{error}</p>
+          <p style={{ color: '#af7ac5' }}>{error}</p>
         </div>
       ) : (
         <div className="audio-files-section">
@@ -175,7 +176,7 @@ useEffect(() => {
                     <button
                         onClick={() => handlePlayClick(file)}
                         style={{
-                            backgroundColor: '#33cc33',
+                            backgroundColor: '#5dade2',
                             color: 'white',
                             border: 'none',
                             padding: '5px 10px',
@@ -199,6 +200,7 @@ useEffect(() => {
                         </audio>
                     </div>
                 </div>
+
                 
                 
                   {/* <audio
@@ -215,7 +217,7 @@ useEffect(() => {
                     <button
                       onClick={() => handleDelete(file)}
                       style={{
-                        backgroundColor: '#ff4444',
+                        backgroundColor: '#af7ac5',
                         color: 'white',
                         border: 'none',
                         padding: '5px 10px',
@@ -231,11 +233,24 @@ useEffect(() => {
             ))
           )}
         </div>
+
+        
         
       )}
 
+<div style={{ marginTop: '1rem' }}>
+                        <audio
+                            controls
+                            className="mt-3 w-full max-w-[600px]"
+                            style={{ width: '100%' }}
+                        >
+                            <source src={audioPreviewUrl} type="audio/mpeg" />
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                
 
-      <h2>Audio Pipeline</h2>
+      <h2 className="mt-6">Audio Pipeline</h2>
 
       <img src={history_image} alt="Description of the image" style={{ width: '60%' }} />
       <div className="mt-6" style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>

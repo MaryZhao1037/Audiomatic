@@ -1,8 +1,39 @@
-/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+
+.nav-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #1e3a8a; /* or whatever blue you're using */
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  display: block;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Optional: Add hover state */
+.nav-button:hover {
+  background-color: #2563eb; /* lighter blue for hover */
+}
+
+/* Remove any list styling if you haven't already */
+.App-sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.App-sidebar nav li {
+  margin: 0;
+  padding: 0;
+}
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Rubik';
   background-color: #121212;
   color: #ffffff;
 }

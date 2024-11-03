@@ -6,12 +6,16 @@ from flask import Flask, request, jsonify, send_from_directory, send_file
 from werkzeug.utils import secure_filename
 from moviepy.editor import VideoFileClip, AudioFileClip
 
+import ai_endpoints
+from dotenv import load_dotenv
+load_dotenv()
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
 # Ensure the main upload folder exists
-if os.path.exists(app.config['UPLOAD_FOLDER']):
-    shutil.rmtree(app.config['UPLOAD_FOLDER'])
+# if os.path.exists(app.config['UPLOAD_FOLDER']):
+#     shutil.rmtree(app.config['UPLOAD_FOLDER'])
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 @app.route('/upload', methods=['POST'])
@@ -98,13 +102,20 @@ def upload_images():
     images_folder = os.path.join(app.config['UPLOAD_FOLDER'], f"images_{random.randint(0, 1e6)}")
     os.makedirs(images_folder, exist_ok=True)
 
+    recent_path = os.path.join(app.config['UPLOAD_FOLDER'], 'recent_image')
+    print(recent_path)
+
     image_paths = []
     for image_file in image_files:
         filename = secure_filename(image_file.filename)
         image_path = os.path.join(images_folder, filename)
         image_file.save(image_path)
         image_paths.append(os.path.relpath(image_path, app.config['UPLOAD_FOLDER']))
+        shutil.copy(image_path, "uploads/recent_image"+os.path.splitext(filename)[1])
 
+    filename = secure_filename(image_files[0].filename)
+    print(image_files[0].filename)
+    # image_files[0].save(recent_path+)
     return jsonify({"images": image_paths})
 
 # Serve images from the upload folder
@@ -118,6 +129,31 @@ def video_preview():
     # Construct the path relative to the project root
     video_path = os.path.join(os.getcwd(), 'results', 'processed_video.mp4')
     return send_file(video_path, mimetype='video/mp4')
+
+
+    
+@app.route('/audio_preview', methods=['GET'])
+def audio_preview():
+    # Construct the path relative to the project root
+    print("wassup")
+    # api_key = os.getenv("OPENAI_API_KEY")
+    # def check_recent_image():
+    #     if os.path.exists(app.config['UPLOAD_FOLDER']+'/recent_image.jpg'):
+    #         return 'uploads/recent_image.jpg'
+    #     elif os.path.exists(app.config['UPLOAD_FOLDER']+'recent_image.png'):
+    #         return 'uploads/recent_image.png'
+        
+    # image_path = check_recent_image()
+    # print(image_path)
+    # img_description = ai_endpoints.imageToText(image_path, api_key)
+    # print(img_description)
+    # audio_description = ai_endpoints.reprompt(img_description, api_key)
+    # print(audio_description)
+
+    output_path = os.path.join(os.getcwd(), 'output', 'realaudio.mp3')
+    # ai_endpoints.generate_music(audio_description, output_path)
+    # audio_path = os.path.join(os.getcwd(), 'output', 'reflection07.mp3')
+    return send_file(output_path, mimetype='audio/mp3')
 
 def process_video():
     # Load the video 'clip'

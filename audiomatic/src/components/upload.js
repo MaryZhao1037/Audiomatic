@@ -6,6 +6,7 @@ function Upload() {
   const [images, setImages] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [videoPreviewUrl, setVideoPreviewUrl] = useState('');
+  const [audioPreviewUrl, setAudioPreviewUrl] = useState('');
   const [fileNames, setFileNames] = useState([]);
 
   const handleVideoUpload = async (event) => {
@@ -67,7 +68,12 @@ function Upload() {
 
   const loadVideoPreview = () => {
     setVideoPreviewUrl('http://localhost:5000/video_preview');
+    
   };
+
+  const loadAudioPreview = () => {
+    setAudioPreviewUrl('http://localhost:5000/audio_preview');
+  }
 
   return (
     <div className="upload">
@@ -122,7 +128,7 @@ function Upload() {
       {/* Video Preview Section */}
       <div className="video-preview-section">
         <button className="btn-generate" onClick={loadVideoPreview}>
-          Generate 
+          Generate Video
         </button>
         {videoPreviewUrl && (
           <video controls width="600">
@@ -131,6 +137,25 @@ function Upload() {
           </video>
         )}
       </div>
+
+      {/* Audio Preview Section */}
+    <div className="mt-5 mb-5">
+      <button 
+        className="btn-generate" 
+        onClick={loadAudioPreview}
+      >
+        Generate Audio
+      </button>
+      {audioPreviewUrl && (
+        <audio 
+          controls 
+          className="mt-3 w-full max-w-[600px]"
+        >
+          <source src={audioPreviewUrl} type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+      )}
+    </div>
     </div>
   );
 }

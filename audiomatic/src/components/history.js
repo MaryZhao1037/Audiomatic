@@ -1,5 +1,7 @@
 // History.js
 import React, { useState, useEffect } from 'react';
+import history_audio from '../historystuff/realaudio.mp3';
+import history_image from '../historystuff/recent_image.jpg';
 
 function History() {
   const [audioFiles, setAudioFiles] = useState([]);
@@ -231,13 +233,36 @@ useEffect(() => {
         </div>
         
       )}
-      <div style={{ marginTop: '1rem' }}>
+
+
+      <h2>Audio Pipeline</h2>
+
+      <img src={history_image} alt="Description of the image" style={{ width: '60%' }} />
+      <div className="mt-6" style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
+<p>
+        <b>Image Description - </b> In this enchanting scene, the world awakens to the gentle embrace of dawn. 
+        A majestic stag stands silhouetted against a vivid tapestry of colors, its regal form mirrored in the tranquil waters below. 
+        Soft hues of pink, orange, and purple blend seamlessly in the sky, creating a dreamlike atmosphere that pulls you into its serenity.
+
+The landscape is alive with a sense of calm; the still water reflects the radiant sun as it begins its ascension, casting a warm glow that ignites the horizon. 
+Lush trees stand like guardians, their dark silhouettes contrasting beautifully with the soft pastels of the morning light.
+<br></br>
+     
+<b>Music Description - </b> 
+A serene ambient piece featuring soft piano melodies intertwined with delicate strings, creating a tranquil atmosphere perfect for a moment of reflection. 
+The gentle ebb and flow of wind chimes adds a touch of nature's harmony, inviting listeners to immerse themselves in the peaceful dawn. 
+With lush harmonies and a subtle pulse, this composition captures the essence of new beginnings and the beauty of stillness.
+     
+      </p>
+</div>
+      
+      <div style={{ marginTop: '1rem'}}>
                         <audio
                             controls
                             className="mt-3 w-full max-w-[600px]"
                             style={{ width: '100%' }}
                         >
-                            <source src={audioPreviewUrl} type="audio/mpeg" />
+                            <source src={history_audio} type="audio/mpeg" />
                             Your browser does not support the audio element.
                         </audio>
                     </div>

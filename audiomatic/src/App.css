@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   margin: 0;
@@ -59,8 +62,22 @@ body {
   color: #00ccff;
 }
 
+.App-header h2 {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+
+
 nav ul {
-  list-style-type: none;
+  list-style-type: none;.App-header h2 {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
   padding: 0;
 }
 

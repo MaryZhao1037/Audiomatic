@@ -2,18 +2,61 @@ import os
 import random
 import cv2
 import shutil
+import psycopg2  # Import psycopg2 for PostgreSQL connection
 from flask import Flask, request, jsonify, send_from_directory, send_file
 from werkzeug.utils import secure_filename
 from moviepy.editor import VideoFileClip, AudioFileClip
+from psycopg2 import sql  # Allows for safe SQL query building
 import mysql.connector
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
+# PostgreSQL database configuration
+DB_CONFIG = {
+    'dbname': 'audiomatic',
+    'user': 'michael',
+    'password': 'poggers',
+    'host': 'localhost',
+    'port': '5432'  # Default PostgreSQL port
+}
+
 # Ensure the main upload folder exists
 if os.path.exists(app.config['UPLOAD_FOLDER']):
     shutil.rmtree(app.config['UPLOAD_FOLDER'])
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+# Connect to PostgreSQL
+def get_db_connection():
+    return psycopg2.connect(**DB_CONFIG)
+
+@app.route('/add_text', methods=['POST'])
+def add_text():
+    # Check if the request contains 'text' in JSON
+    if not request.json or 'text' not in request.json:
+        return jsonify({"error": "No text found in request"}), 400
+
+    text = request.json['text']
+
+    try:
+        # Connect to the database
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Insert the text into the database
+        insert_query = sql.SQL("INSERT INTO {table} (prompt) VALUES (%s)").format(
+            table=sql.Identifier('audio_prompts')
+        )
+        cursor.execute(insert_query, (text,))
+        conn.commit()
+        
+        cursor.close()
+        conn.close()
+
+        return jsonify({"message": "Text added successfully!"}), 201
+    except Exception as e:
+        print(f"Database error: {e}")
+        return jsonify({"error": "Failed to add text to the database"}), 500
 
 @app.route('/upload', methods=['POST'])
 def upload_video():
@@ -129,33 +172,6 @@ def process_video():
     final_clip = video_clip.set_audio(audio_clip)
     # Save the resulting video
     final_clip.write_videofile("results/processed_video.mp4", codec="libx264", audio_codec="aac")
-
-# Database connection configuration
-db_config = {
-    'host': 'favorable-mark-440605-h0:us-central1:audiomatic',       # e.g., 'localhost'
-    'user': 'root',   # MySQL username
-    'password': 'mysqliscool69!', # MySQL password
-    'database': 'hacktx'       # Your database name
-}
-
-# Route to fetch all data from the "Prompts" table
-@app.route('/api/prompts', methods=['GET'])
-def get_prompts():
-    try:
-        conn = mysql.connector.connect(**db_config)
-        cursor = conn.cursor(dictionary=True)
-        
-        query = "SELECT * FROM Prompts"
-        cursor.execute(query)
-        results = cursor.fetchall()
-        
-        cursor.close()
-        conn.close()
-        
-        return jsonify(results)
-    except mysql.connector.Error as err:
-        print(f"Error: {err}")
-        return jsonify({"error": "Database connection failed"}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -24,7 +24,7 @@ body {
   font-family: 'Rubik', sans-serif;
   background-color: var(--background);
   color: var(--text-primary);
-  background-image: url('/public/assets/bg.jpeg');
+  background-image: url('/public/assets/bg_upscale.png');
   background-size: cover;
 background-repeat: no-repeat;
 background-position: center;
@@ -54,6 +54,13 @@ h2 + p {
   margin-bottom: 2.5rem;
   font-weight: 300;
   line-height: 1.7;
+}
+
+.App-title-container {
+  display: flex;
+  align-items: center; /* Vertically centers items */
+  justify-content: center; /* Horizontally centers items */
+  text-align: center; /* Centers text in h1 */
 }
 
 /* Sidebar */

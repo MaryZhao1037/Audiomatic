@@ -4,6 +4,7 @@ import './App.css';
 
 import Dashboard from './components/dashboard';
 import Upload from './components/upload';
+import History from './components/history';
 
 function NavButton({ to, children, className = '' }) {
   const navigate = useNavigate();
@@ -20,8 +21,8 @@ function NavButton({ to, children, className = '' }) {
 function Navigation() {
   return (
     <aside className="App-sidebar">
-      <NavButton to="/dashboard" className="title-button">
-        <div className="title-container">
+      <NavButton to="/dashboard" className="title-button ml-0 mr-8 pl-0">
+        <div className="title-container ml-0 pl-0 pr-8 mr-8">
           <img 
             src="/logo.png" // Replace with your actual logo path
             alt="Audiomatic Logo"
@@ -39,6 +40,9 @@ function Navigation() {
           <li>
             <NavButton to="/upload">Upload</NavButton>
           </li>
+          <li>
+            <NavButton to="/history">History</NavButton>
+          </li>
         </ul>
       </nav>
     </aside>
@@ -55,6 +59,7 @@ function App() {
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/upload" element={<Upload />} />
+            <Route path="/history" element={<History />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </main>

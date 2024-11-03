@@ -37,11 +37,20 @@ export default function RecipeReviewCard() {
   // Sample tags
   const tags = ["Live", "Music", "Album"];
 
+  const imageUrl = "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG5hdHVyZXxlbnwwfHx8fDE2ODg3MTY2MzI&ixlib=rb-1.2.1&q=80&w=400";
   return (
+    <div>
+      <div style={{ width: '300px', height: '300px', overflow: 'hidden', border: '1px solid #ccc' }}>
+      <img
+        src={"https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG5hdHVyZXxlbnwwfHx8fDE2ODg3MTY2MzI&ixlib=rb-1.2.1&q=80&w=400"}
+        alt="Nature"
+        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+      />
+    </div>
     <Card sx={{ maxWidth: 345 }}>
       <Box sx={{ height: 200, backgroundColor: 'black' }}>
         <img
-          src="/assets/file.png"  // Path to your image file
+          src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG5hdHVyZXxlbnwwfHx8fDE2ODg3MTY2MzI&ixlib=rb-1.2.1&q=80&w=400"  // Path to your image file
           alt="Display"
           width="100%"
           height="100%"
@@ -62,5 +71,6 @@ export default function RecipeReviewCard() {
         </Box>
       </CardContent>
     </Card>
+    </div>
   );
 }

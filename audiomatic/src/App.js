@@ -29,6 +29,7 @@ function Navigation() {
           />
           <h1 className="App-title">Audiomatic</h1>
         </div>
+        
       </NavButton>
       <nav>
         <ul>

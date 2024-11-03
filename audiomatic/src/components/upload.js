@@ -7,6 +7,8 @@ function Upload() {
   const [uploading, setUploading] = useState(false);
   const [videoPreviewUrl, setVideoPreviewUrl] = useState('');
   const [audioPreviewUrl, setAudioPreviewUrl] = useState('');
+
+  const [isLoadingAudio, setIsLoadingAudio] = useState(false);
   const [fileNames, setFileNames] = useState([]);
 
   const handleVideoUpload = async (event) => {
@@ -72,7 +74,10 @@ function Upload() {
   };
 
   const loadAudioPreview = () => {
+    setIsLoadingAudio(true);
+    console.log('Loading audio preview...');
     setAudioPreviewUrl('http://localhost:5000/audio_preview');
+    setIsLoadingAudio(false);
   }
 
   return (

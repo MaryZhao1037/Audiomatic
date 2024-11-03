@@ -5,12 +5,12 @@
 .App {
   display: flex;
   min-height: 100vh;
-  background-color: #00171F;
+  /* background-color: #00171F; */
 }
 
 .App-sidebar {
   width: 250px;
-  background-color: #00171F;
+  background-color: rgba(0, 0,0, 0.6);
   border-right: 1px solid #003459;
   padding: 1.5rem;
 }
@@ -38,14 +38,14 @@
 }
 
 .App-sidebar nav ul li:hover {
-  background-color: #003459;
+  background-color: rgba(0, 52, 89, 0.5) ;
   color: #00A8E8;
 }
 
 .App-main {
   flex: 1;
   padding: 2rem;
-  background-color: #00171F;
+  /* background-color: #00171F; */
 }
 
 .App-header {
@@ -64,7 +64,7 @@
 }
 
 .upload-section {
-  background-color: #003459;
+  /* background-color: #003459; */
   padding: 1.5rem;
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;
@@ -93,7 +93,7 @@
 }
 
 .uploading-text {
-  background-color: #003459;
+  /* background-color: #003459; */
   color: #00A8E8;
   padding: 1rem;
   border-radius: 0.375rem;
